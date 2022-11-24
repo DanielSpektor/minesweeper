@@ -17,6 +17,10 @@ h2 {
     
 }
 
+div.shown {
+    margin-bottom: 20px;
+}
+
 .board {
     text-align: center;
     color: black;

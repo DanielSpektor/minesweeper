@@ -20,7 +20,7 @@ function initGame(level, mines) {
     gLevel.MINES = mines
     gLevel.SIZE = level
     gBoard = buildBoard()
-    renderBoard()
+    // renderBoard()
 }
 
 function buildBoard() {
@@ -46,14 +46,14 @@ function renderBoard(board) {
     for (var i = 0; i < board.length; i++) {
         strHTML += '<tr>'
         for (var j = 0; j < board[0].length; j++) {
-            var currCell= renderImg(i,j)
-            strHTML += `<td><div data-i=${i} data-j=${j} onclick="onCellClicked(this)" >${currCell}</div></td>`
+            var currCell= renderImg(i, j)
+            strHTML += `<td><div data-i=${i} data-j=${j} oncontextmenu="" onclick="onCellClicked(this)" >${currCell}</div></td>`
         }
         strHTML += '</tr>'
     }
     strHTML += '</table>'
     elBoard.innerHTML = strHTML
-    // console.log(gBoard)  
+    // console.log(strHTML)  
 }
 
 function randMinesPos() {
@@ -87,7 +87,8 @@ function setMinesNegsCount(rowIdx, colIdx) {
                 for (var j = colIdx - 1; j <= colIdx + 1; j++) {
                     if (i === rowIdx && j === colIdx) continue
                     if (i < 0 || j > gBoard[0].length) continue
-                    if(gBoard[rowIdx][colIdx].isMine)count++
+                    if(gBoard[rowIdx][colIdx].isMine)
+                        count++
                 }
             }
             gBoard[rowIdx][colIdx].minesAroundCount = count
@@ -124,7 +125,6 @@ function onCellClicked(elCell) {
         renderImg(i, j)
         gBoard[i][j].isShown = true
         console.log('game over')
-        //gameover function
         checkGameOver()
     }
     renderBoard(gBoard)
@@ -147,33 +147,18 @@ function renderImg (i, j) {
     
     // console.log(cell);
     if (!cell.isShown) return `<img class="cellImg" src="./pics/notEmpty.png"/>`
-    if(cell.minesAroundCount === 1) return `<img class="cellImg" src="./pics/1.png"/>`
     if (cell.isMine) return `<img class="cellImg" src="./pics/boom.jpg"/>`
-    switch (cell.minesAroundCount) {
-        case 0:
-            return `<img class="cellImg" src="./pics/empty.png"/>`
-            break;
-        case 1:
-            return `<img class="cellImg" src="./pics/1.png"/>` 
-            break;
-        case 2:
-            return `<img class="cellImg" src="./pics/2.jpg"/>`
-            break;
-        case 3:
-            return `<img class="cellImg" src="./pics/3.jpg"/>`
-            break;
-        case 4:
-            return `<img class="cellImg" src="./pics/4.jpg"/>`
-            break;
-                     
-    }
+    if (cell.minesAroundCount === 0) return `<img class="cellImg" src="./pics/empty.png"/>`
+    if (cell.minesAroundCount === 1) return `<img class="cellImg" src="./pics/1.png"/>`
+    if (cell.minesAroundCount === 2) return `<img class="cellImg" src="./pics/2.jpg"/>`
+    if (cell.minesAroundCount === 3) return `<img class="cellImg" src="./pics/3.jpg"/>`   
+
 }
                     
-function checkGameOver() {
-    gGame.gameIsOver = true
-    initGame()          
-                        
-}
+function checkGameOver() {                    
+    gGame.gameIsOver = true 
+    
+} 
                         
 function expandShown(i, j) { 
     var idxI = i
@@ -184,9 +169,14 @@ function expandShown(i, j) {
             if (idxJ < 0 || idxJ >= gBoard[0].length) continue
             if (gBoard[i] === idxI || gBoard[j] === idxJ) continue
             if (gBoard[i][j].isMine) continue
-            gBoard[i][j].isShown = true
+                gBoard[i][j].isShown = true
+            }    
         }
     }
+
+
+function cellMarked(elCell) {
+    
 }
 
 function getRandomInt(min, max) {
