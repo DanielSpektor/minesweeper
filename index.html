@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MineSweeper</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="shortcut icon" type="x-icon" href="iconMinesweeper.png">
 </head>
 <body onload="initGame(4,2)">
 
@@ -19,10 +19,13 @@
     <div class="shown">How many cells you've opened:</div>
 
     <div class="box">
-        <button onclick="initGame(4,2)">Beginner</button>
-        <button onclick="initGame(8,14)">Medium</button>
-        <button onclick="initGame(12,32)">Expert</button>
-            <table border="" cellpaddings="">
+        <div class="button-container"> 
+
+            <button onclick="initGame(4,2)">Beginner</button>
+            <button onclick="initGame(8,14)">Medium</button>
+            <button onclick="initGame(12,32)">Expert</button>
+        </div>
+            <table class="boardtable" border="" cellpaddings="">
                 <tbody class="board"></tbody>
 
             </table>
@@ -30,7 +33,7 @@
 
         </div>
     
-        <script src="main.js"></script>
+        <script src="js/main.js"></script>
 
         <footer>@Project MineSweeper by Daniel Spektor</footer>
 

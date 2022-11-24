@@ -26,7 +26,17 @@ div.shown {
     color: black;
     
 }
-
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.buttons-container{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
 .box.button {
     font-family: serif;
 }
@@ -40,7 +50,7 @@ table {
     text-align: center;
     width: 100x;
     height: 100px;
-    margin-left: 37%;
+    /* margin-left: 37%; */
     margin-top: 30px;
     cursor: pointer;
 }
